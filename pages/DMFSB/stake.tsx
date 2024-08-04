@@ -11,25 +11,25 @@ import {
 import { BigNumber, ethers } from "ethers";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
-import NFTCard from "../components/NFTCard";
+import NFTCard from "../../components/NFTCardDMFSB";
 import {
-  nftDropContractAddress,
-  stakingContractAddress,
-  tokenContractAddress,
-} from "../consts/contractAddresses";
-import styles from "../styles/Home.module.css";
+  DMFSBnftDropContractAddress,
+  DMFSBstakingContractAddress,
+  DMFSBtokenContractAddress,
+} from "../../consts/contractAddresses";
+import styles from "../../styles/Home.module.css";
 
 const Stake: NextPage = () => {
   const address = useAddress();
   const { contract: nftDropContract } = useContract(
-    nftDropContractAddress,
+    DMFSBnftDropContractAddress,
     "nft-drop"
   );
   const { contract: tokenContract } = useContract(
-    tokenContractAddress,
+    DMFSBtokenContractAddress,
     "token"
   );
-  const { contract, isLoading } = useContract(stakingContractAddress);
+  const { contract, isLoading } = useContract(DMFSBstakingContractAddress);
   const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
   const { data: tokenBalance } = useTokenBalance(tokenContract, address);
   const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
@@ -53,10 +53,10 @@ const Stake: NextPage = () => {
 
     const isApproved = await nftDropContract?.isApproved(
       address,
-      stakingContractAddress
+      DMFSBstakingContractAddress
     );
     if (!isApproved) {
-      await nftDropContract?.setApprovalForAll(stakingContractAddress, true);
+      await nftDropContract?.setApprovalForAll(DMFSBstakingContractAddress, true);
     }
     await contract?.call("stake", [[id]]);
   }
@@ -67,17 +67,21 @@ const Stake: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.h1}>Stake Your NFTs</h1>
-      <hr className={`${styles.divider} ${styles.spacerTop}`} />
-
       {!address ? (
-        <ConnectWallet />
+        <ConnectWallet 
+        className={styles.btn_gradient_connect}
+      />
       ) : (
         <>
-          <h2>Your Tokens</h2>
+         <div className={styles.relative}>
+         <ConnectWallet 
+          className={styles.btn_gradient_connect}
+        />
+          </div>
+          <h3>Diamond Fluid Tokens</h3>
           <div className={styles.tokenGrid}>
             <div className={styles.tokenItem}>
-              <h3 className={styles.tokenLabel}>Claimable Rewards</h3>
+              <h4 className={styles.tokenLabel}>Staking Rewards at 50% APR.</h4>
               <p className={styles.tokenValue}>
                 <b>
                   {!claimableRewards
@@ -88,7 +92,7 @@ const Stake: NextPage = () => {
               </p>
             </div>
             <div className={styles.tokenItem}>
-              <h3 className={styles.tokenLabel}>Current Balance</h3>
+              <h4 className={styles.tokenLabel}>Current Balance</h4>
               <p className={styles.tokenValue}>
                 <b>{tokenBalance?.displayValue}</b> {tokenBalance?.symbol}
               </p>
@@ -97,13 +101,14 @@ const Stake: NextPage = () => {
 
           <Web3Button
             action={(contract) => contract.call("claimRewards")}
-            contractAddress={stakingContractAddress}
+            contractAddress={DMFSBstakingContractAddress}
+            className={styles.btn_gradient_silver}
           >
             Claim Rewards
           </Web3Button>
 
           <hr className={`${styles.divider} ${styles.spacerTop}`} />
-          <h2>Your Staked NFTs</h2>
+          <h3>Staked DMFSB NFTs</h3>
           <div className={styles.nftBoxGrid}>
             {stakedTokens &&
               stakedTokens[0]?.map((stakedToken: BigNumber) => (
@@ -115,7 +120,7 @@ const Stake: NextPage = () => {
           </div>
 
           <hr className={`${styles.divider} ${styles.spacerTop}`} />
-          <h2>Your Unstaked NFTs</h2>
+          <h3>Available DMFSB NFTs</h3>
           <div className={styles.nftBoxGrid}>
             {ownedNfts?.map((nft) => (
               <div className={styles.nftBox} key={nft.metadata.id.toString()}>
@@ -125,8 +130,9 @@ const Stake: NextPage = () => {
                 />
                 <h3>{nft.metadata.name}</h3>
                 <Web3Button
-                  contractAddress={stakingContractAddress}
+                  contractAddress={DMFSBstakingContractAddress}
                   action={() => stakeNft(nft.metadata.id)}
+                  className={styles.btn_gradient_silver}
                 >
                   Stake
                 </Web3Button>

@@ -6,8 +6,8 @@ import {
 } from "@thirdweb-dev/react";
 import type { FC } from "react";
 import {
-  nftDropContractAddress,
-  stakingContractAddress,
+  RPFSBnftDropContractAddress,
+  RPFSBstakingContractAddress,
 } from "../consts/contractAddresses";
 import styles from "../styles/Home.module.css";
 
@@ -16,7 +16,7 @@ interface NFTCardProps {
 }
 
 const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
-  const { contract } = useContract(nftDropContractAddress, "nft-drop");
+  const { contract } = useContract(RPFSBnftDropContractAddress, "nft-drop");
   const { data: nft } = useNFT(contract, tokenId);
 
   return (
@@ -32,9 +32,12 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
           <h3>{nft.metadata.name}</h3>
           <Web3Button
             action={(contract) => contract?.call("withdraw", [[nft.metadata.id]])}
-            contractAddress={stakingContractAddress}
+            contractAddress={RPFSBstakingContractAddress}
+            className={styles.btn_gradient_purple}
           >
-            Withdraw
+          <div>
+          Withdraw
+          </div>
           </Web3Button>
         </div>
       )}
