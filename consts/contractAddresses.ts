@@ -36,9 +36,9 @@ export const RPFSBstakingContractAddress =
 export const SMFSBnftDropContractAddress =
 "0x37B1c0f1648aA496b04657c8cA639e11731D737b";
 export const SMFSBtokenContractAddress =
-"0x1fD0E55C66B42be30793Eae30DbCdB8A8184DF42";
+"0xBfC68ed382e12B81bd8a3517c4FD3Cf76Cf853f9";
 export const SMFSBstakingContractAddress =
-"0x418306266065bDd5e1528e9b183C0e553E706750";
+"0xE42cBb3bD4Aa5b4834738D43eC7C242bD0D0aA73";
 
 export const RFLBanftDropContractAddress =
 "0xa41573F9A4791be31D538FA5916d1Ee8B849eC52";
