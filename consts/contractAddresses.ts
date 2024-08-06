@@ -39,12 +39,3 @@ export const SMFSBtokenContractAddress =
 "0xBfC68ed382e12B81bd8a3517c4FD3Cf76Cf853f9";
 export const SMFSBstakingContractAddress =
 "0xE42cBb3bD4Aa5b4834738D43eC7C242bD0D0aA73";
-
-export const RFLBanftDropContractAddress =
-"0xa41573F9A4791be31D538FA5916d1Ee8B849eC52";
-export const RFLBatokenContractAddress =
-"0x1fD0E55C66B42be30793Eae30DbCdB8A8184DF42";
-export const RFLBastakingContractAddress =
-"0x074f45d0CA50a61A1630d9381916891Bc0629CDb";
-
-export const RFLBa_URL="https://refined-fluids-liquid-badgers-a.nfts2.me/";

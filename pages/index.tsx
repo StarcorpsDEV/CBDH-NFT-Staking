@@ -255,42 +255,7 @@ const router = useRouter();
           </span>
         </div>
       </div>
-      <div className={styles.nftBoxGrid}>
-        <div
-          className={styles.optionSelectBox}
-          role="button"
-          onClick={() => router.push("/RFLBa/mint")}
-        >
-          {/* Mint a new NFT */}
-          <img src="https://nftstorage.link/ipfs/bafybeiay4hmhtxoie47v4xxjk4z6gnfov4qwebuztkr64jihlip3ww7al4/logo.gif" alt="token"  
-            style={{width:"25%", border: '1px solid #f4aa11', borderRadius: '12px'}}
-           />
-          <h2 className={styles.selectBoxTitle}>Mint a new RFLBa</h2>
-          <span className={styles.selectBoxDescription}>
-            <p className={styles.color_black_trans}>
-            Use the NFT Drop Contract to claim an RFLBa NFT from the collection.
-            </p>
-          </span>
-        </div>
-
-        <div
-          className={styles.optionSelectBox}
-          role="button"
-          onClick={() => router.push("/RFLBa/stake")}
-        >
-          {/* Staking an NFT */}
-          <img src="https://bafybeiay4hmhtxoie47v4xxjk4z6gnfov4qwebuztkr64jihlip3ww7al4.ipfs.nftstorage.link/banner.webp" alt="token"  
-					style={{width:"100%", border: '1px solid #f4aa11', borderRadius: '12px'}}
-          />
-          <h2 className={styles.selectBoxTitle}>Stake Your NFTs RFLBa</h2>
-          <span className={styles.selectBoxDescription}>
-          <p className={styles.color_black_trans}>
-            Use the staking contract to stake your RFLBa NFTs and earn SMF tokens.
-          </p>
-          </span>
-        </div>
-      </div>
-
+   
     </div>
     </div>
   );
